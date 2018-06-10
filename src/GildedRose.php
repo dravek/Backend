@@ -33,7 +33,6 @@ class GildedRose {
 
                 default:
 
-                    // Other
                     $obj = new Others($item->name, $item->sell_in,$item->quality);
                     break;
             }
