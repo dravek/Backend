@@ -6,6 +6,8 @@ class GildedRose {
 
     private $items;
 
+    private $obj;
+
     function __construct($items) {
         $this->items = $items;
     }
@@ -63,17 +65,20 @@ class GildedRose {
             {
                 case 'Aged Brie':
 
-                    if ($item->quality < 50) $item->quality++;
+                    $obj = new AgedBrie($item->name, $item->sell_in,$item->quality);
+
+                    //var_dump($obj);
+                    // if ($item->quality < 50) $item->quality++;
                     
-                    $item->sell_in--;
+                    // $item->sell_in--;
 
-                    if ($item->sell_in < 0) {
-                        if ($item->quality < 50) {
-                            $item->quality++;
-                        }
-                    }
+                    // if ($item->sell_in < 0) {
+                    //     if ($item->quality < 50) {
+                    //         $item->quality++;
+                    //     }
+                    // }
 
-                    return;
+                    break;
 
                 case 'Backstage passes to a TAFKAL80ETC concert':
 
@@ -91,11 +96,11 @@ class GildedRose {
 
                     if ($item->sell_in < 0) $item->quality = 0;
 
-                    return;
+                    break;
 
                 case 'Sulfuras, Hand of Ragnaros':
 
-                    return;
+                    break;
 
                 default:
 
@@ -113,8 +118,12 @@ class GildedRose {
                         }
                     }
 
-                    return;
+                    break;
             }
+
+            $obj->quality();
+            $item->quality = $obj->quality;
+            $item->sell_in = $obj->sell_in;
         }
     }
 }
